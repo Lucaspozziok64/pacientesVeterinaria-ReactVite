@@ -1,17 +1,23 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import CardCitas from './components/CardCitas'
 import FormularioCitas from './components/FormularioCitas'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+
 function App() {
 
-  const [citas, setCitas] = useState([])
+  const citasGuardadas = JSON.parse(localStorage.getItem('agendaCitas')) || [];
+  const [citas, setCitas] = useState(citasGuardadas)
 
   const agregarCita = (nuevoNombre, nuevoDueño, nuevoHora, nuevoFecha, nuevoSintoma) => {
     const nuevaCita = {id: Date.now(), nombre: nuevoNombre, dueño: nuevoDueño, fecha: nuevoFecha, hora: nuevoHora, sintoma: nuevoSintoma}
     setCitas([...citas, nuevaCita])
   }
+
+  useEffect(()=> {
+    localStorage.setItem('agendaCitas', JSON.stringify(citas));
+  }, [citas])
 
   const borrarCard = (id) => {
     setCitas(citas.filter((cita)=> cita.id !== id));
