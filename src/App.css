@@ -22,6 +22,25 @@
   background-color: black;
 }
 
+.botonEliminar {
+  background-color: red;
+  color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.botonEliminar:hover {
+  background-color: rgb(255, 55, 55);
+}
+
+.card {
+  box-shadow: 10px 10px 5px 0px rgba(241, 155, 0, 0.75);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(241, 155, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(241, 155, 0, 0.75);
+}
 
 @media (max-width: 767px) {
   .cotenedorFormulario {
