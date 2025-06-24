@@ -13,6 +13,10 @@ function App() {
     setCitas([...citas, nuevaCita])
   }
 
+  const borrarCard = (id) => {
+    setCitas(citas.filter((cita)=> cita.id !== id));
+  }
+
   return (
     <>
       <main className='container my-4'>
@@ -24,7 +28,9 @@ function App() {
           {citas.map((cita)=> (
             <CardCitas 
               key={cita.id}
-              cita={cita}/>
+              cita={cita}
+              borrarCard={()=> borrarCard(cita.id)}
+            />
           ))}
         </div>
       </main>

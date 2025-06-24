@@ -1,4 +1,4 @@
-const CardCitas = ({ cita }) => {
+const CardCitas = ({ cita, borrarCard }) => {
   return (
     <div className="col">
       <div className="card">
@@ -22,7 +22,7 @@ const CardCitas = ({ cita }) => {
           </p>
         </div>
         <div className="card-footer bg-secondary text-end">
-          <button className="botonEliminar">
+          <button className="botonEliminar" onClick={borrarCard}>
             Borrar
           </button>
         </div>
