@@ -77,6 +77,7 @@ const FormularioCitas = ({ agregarCita }) => {
           className="form-control"
           id="exampleFormControlTextarea1"
           rows="3"
+          type="text"
           placeholder="ej: Juan"
           {...register("inputDueño", {
             required: "Su nombre es un dato obligatorio",
@@ -152,8 +153,8 @@ const FormularioCitas = ({ agregarCita }) => {
               message: "El sintoma debe tener 10 caracteres como minimo",
             },
             maxLength: {
-              value: 120,
-              message: "El sintoma debe contener como maximo 100 caracteres",
+              value: 30,
+              message: "El sintoma debe contener como maximo 30 caracteres",
             },
           })}
         ></input>

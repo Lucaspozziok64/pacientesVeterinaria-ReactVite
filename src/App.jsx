@@ -32,16 +32,49 @@ function App() {
   }, [citas]);
 
   const borrarCard = (id) => {
-    setCitas(citas.filter((cita) => cita.id !== id));
     Swal.fire({
-      title: "Cita eliminada!",
-      text: "Has eliminado la tarjeta!",
-      icon: "info",
+      title: "Estas seguro de eliminar esta cita?",
+      text: "No podras revertir la tarjeta!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, Borrar!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setCitas(citas.filter((cita) => cita.id !== id));
+        Swal.fire({
+          title: "Cita eliminada!",
+          text: "Has eliminada la tarjeta",
+          icon: "success",
+        });
+      }
     });
   };
 
   return (
     <>
+      <header>
+        <nav className="navbar bg-black">
+          <div className="container-fluid">
+            <a className="navbar-brand text-white">🐶Veterinaria🐈</a>
+            <form className="d-flex" role="search">
+              <input
+                className="form-control me-2"
+                type="search"
+                placeholder="Buscar"
+                aria-label="Search"
+              />
+              <button
+                className="btn btn-outline-success disabled"
+                type="submit"
+              >
+                Buscar
+              </button>
+            </form>
+          </div>
+        </nav>
+      </header>
       <main className="container my-4">
         <h2 className="text-center my-2">
           Administador pacientes de veterinaria
