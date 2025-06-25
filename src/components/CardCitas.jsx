@@ -4,7 +4,7 @@ const CardCitas = ({ cita, borrarCard }) => {
       <div className="card">
         <div className="card-header">
             <h5 className="card-tittle text-center text-md-start mb-0">
-              Mascota: <strong>{cita.nombre}</strong>🐶
+              🐶: <strong>{cita.nombre}</strong>
             </h5>
             <p className="mb-0">
               Dueño: <strong>{cita.dueño}</strong>

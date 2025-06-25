@@ -1,25 +1,26 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const FormularioCitas = ({ agregarCita }) => {
-  const [nombre, setNombre] = useState("");
-  const [dueño, setDueño] = useState("");
-  const [fecha, setFecha] = useState("");
-  const [hora, setHora] = useState("");
-  const [sintoma, setSintoma] = useState("");
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm()
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    agregarCita(nombre, dueño, fecha, hora, sintoma)
+  const cargarCard = (data) => {
+    const  { inputNombre, inputDueño, inputFecha, inputHora, inputSintomas} = data
+    agregarCita(inputNombre, inputDueño, inputHora, inputFecha, inputSintomas)
+    reset();
   };
 
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(cargarCard)}
       className="container p-4 text-center text-md-start"
     >
       <h6 className="text-center">Llena el formulario para crear una cita</h6>
-      <div className="mb-3">
+      <div className="mb-2">
         <label className="form-label">
           <strong>Nombre de mascota:</strong>
         </label>
@@ -28,11 +29,28 @@ const FormularioCitas = ({ agregarCita }) => {
           className="form-control"
           id="exampleFormControlInput1"
           placeholder="ej: Budy🐶"
-          onChange={(e) => setNombre(e.target.value)}
-          value={nombre}
+          {...register("inputNombre", {
+              required: "EL nombre es un dato obligatorio",
+              minLength: {
+                value: 3,
+                message: "El nombre debe tener 3 caracteres como minimo",
+              },
+              maxLength: {
+                value: 5,
+                message: "El nombre debe contener como maximo 5 caracteres",
+              },
+              pattern: {
+                value: /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,50}$/,
+                message:
+                  "El nombre debe contener caracteres alfanumericos mayusculas o minusculas",
+              },
+          })}
         />
       </div>
-      <div className="mb-3">
+      <div>
+        <span className="bg-danger text-white">{errors.inputNombre?.message}</span>
+      </div>
+      <div className="mb-2">
         <label className="form-label">
           <strong>Nombre dueño:</strong>
         </label>
@@ -41,11 +59,28 @@ const FormularioCitas = ({ agregarCita }) => {
           id="exampleFormControlTextarea1"
           rows="3"
           placeholder="ej: Juan"
-          onChange={(e) => setDueño(e.target.value)}
-          value={dueño}
+          {...register("inputDueño", {
+              required: "Su nombre es un dato obligatorio",
+              minLength: {
+                value: 4,
+                message: "su nombre debe tener 4 caracteres como minimo",
+              },
+              maxLength: {
+                value: 10,
+                message: "Su nombre debe contener como maximo 10 caracteres",
+              },
+              pattern: {
+                value: /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,50}$/,
+                message:
+                  "Su nombre debe contener caracteres alfanumericos mayusculas o minusculas",
+              },
+          })}
         ></input>
       </div>
-      <div className="mb-3 d-flex justify-content-center align-items-center">
+      <div>
+        <span className="bg-danger text-white">{errors.inputDueño?.message}</span>
+      </div>
+      <div className="mb-0 d-flex justify-content-center align-items-center">
         <label className="form-label">
           <strong>Fecha:</strong>
         </label>
@@ -54,8 +89,9 @@ const FormularioCitas = ({ agregarCita }) => {
           id="exampleFormControlTextarea1"
           rows="3"
           type="date"
-          onChange={(e) => setFecha(e.target.value)}
-          value={fecha}
+          {...register("inputFecha", {
+              required: "La fecha es un dato obligatorio",
+          })}
         ></input>
         <label className="form-label mx-1">
           <strong>Hora:</strong>
@@ -65,11 +101,16 @@ const FormularioCitas = ({ agregarCita }) => {
           id="exampleFormControlTextarea1"
           rows="3"
           type="time"
-          onChange={(e) => setHora(e.target.value)}
-          value={hora}
+          {...register("inputHora", {
+              required: "La hora es un dato obligatorio",
+          })}
         ></input>
       </div>
-      <div className="mb-3">
+      <div>
+        <span className="bg-danger text-white">{errors.inputFecha?.message}</span>
+        <span className="bg-danger text-white m-1">{errors.inputHora?.message}</span>
+      </div>
+      <div className="mb-2">
         <label className="form-label">
           <strong>Sintomas:</strong>
         </label>
@@ -79,9 +120,21 @@ const FormularioCitas = ({ agregarCita }) => {
           rows="3"
           type="text"
           placeholder="Describir sintomas"
-          onChange={(e) => setSintoma(e.target.value)}
-          value={sintoma}
+          {...register("inputSintomas", {
+              required: "El sintoma es un dato obligatorio",
+              minLength: {
+                value: 4,
+                message: "El sintoma debe tener 10 caracteres como minimo",
+              },
+              maxLength: {
+                value: 120,
+                message: "El sintoma debe contener como maximo 100 caracteres",
+              },
+          })}
         ></input>
+      </div>
+      <div>
+        <span className="bg-danger text-white">{errors.inputSintomas?.message}</span>
       </div>
       <div className="d-flex justify-content-end">
         <button type="submit" className="bg-success rounded-2 text-white">
