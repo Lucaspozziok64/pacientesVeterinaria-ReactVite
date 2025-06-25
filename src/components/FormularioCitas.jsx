@@ -104,7 +104,7 @@ const FormularioCitas = ({ agregarCita }) => {
       </div>
       <div className="mb-0 d-flex justify-content-center align-items-center">
         <label className="form-label">
-          <strong>Hora:</strong>
+          <strong>Fecha:</strong>
         </label>
         <input
           className="form-control inputFechaHora mx-1"
@@ -115,7 +115,7 @@ const FormularioCitas = ({ agregarCita }) => {
           })}
         ></input>
         <label className="form-label mx-1">
-          <strong>Fecha:</strong>
+          <strong>Hora:</strong>
         </label>
         <input
           className="form-control inputFechaHora"

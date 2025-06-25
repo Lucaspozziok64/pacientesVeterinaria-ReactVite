@@ -12,10 +12,10 @@ const CardCitas = ({ cita, borrarCard }) => {
           </div>
         <div className="card-body bg-info-subtle">
           <p className="card-text">
-            Hora: <strong>{cita.fecha}</strong>
+            Fecha: <strong>{cita.fecha}</strong>
           </p>
           <p className="card-text">
-            Fecha: <strong>{cita.hora}</strong>
+            Hora: <strong>{cita.hora}</strong>
           </p>
           <p className="card-text">
             Sintomas: <strong>{cita.sintoma}</strong>
