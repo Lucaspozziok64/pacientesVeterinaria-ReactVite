@@ -48,6 +48,6 @@
   }
 
   .inputFechaHora {
-    width: 120px !important;
+    min-width: 110px !important;
   }
 }

@@ -53,8 +53,8 @@ const FormularioCitas = ({ agregarCita }) => {
               message: "El nombre debe tener 3 caracteres como minimo",
             },
             maxLength: {
-              value: 5,
-              message: "El nombre debe contener como maximo 5 caracteres",
+              value: 10,
+              message: "El nombre debe contener como maximo 10 caracteres",
             },
             pattern: {
               value: /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,50}$/,
@@ -155,6 +155,11 @@ const FormularioCitas = ({ agregarCita }) => {
             maxLength: {
               value: 30,
               message: "El sintoma debe contener como maximo 30 caracteres",
+            },
+            pattern: {
+              value: /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,50}$/,
+              message:
+                "La descripcion contener caracteres alfanumericos mayusculas o minusculas",
             },
           })}
         ></input>

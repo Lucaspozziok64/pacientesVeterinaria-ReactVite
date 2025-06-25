@@ -82,6 +82,9 @@ function App() {
         <section className="cotenedorFormulario rounded-4 d-flex justify-content-center">
           <FormularioCitas agregarCita={agregarCita}></FormularioCitas>
         </section>
+        <h4 className="text-white text-center my-2">
+          {citas.length === 0 ? "No hay citas aún 😔" : "Administre sus citas aqui🫡"}
+        </h4>
         <div className="container my-2 row row-cols-1 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
           {citas.map((cita) => (
             <CardCitas
@@ -92,6 +95,13 @@ function App() {
           ))}
         </div>
       </main>
+      <footer className="bg-black text-center text-white">
+        <p className="mb-0">&copy;Todos los derechos reservados</p>
+        <p className="mb-0">
+          Desarrollado por{" "}
+          <a href="https://github.com/Lucaspozziok64">Lucas Figueroa</a>👨‍💻
+        </p>
+      </footer>
     </>
   );
 }
