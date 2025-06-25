@@ -104,24 +104,22 @@ const FormularioCitas = ({ agregarCita }) => {
       </div>
       <div className="mb-0 d-flex justify-content-center align-items-center">
         <label className="form-label">
-          <strong>Fecha:</strong>
+          <strong>Hora:</strong>
         </label>
         <input
           className="form-control inputFechaHora mx-1"
           id="exampleFormControlTextarea1"
-          rows="3"
           type="date"
           {...register("inputFecha", {
             required: "La fecha es un dato obligatorio",
           })}
         ></input>
         <label className="form-label mx-1">
-          <strong>Hora:</strong>
+          <strong>Fecha:</strong>
         </label>
         <input
           className="form-control inputFechaHora"
           id="exampleFormControlTextarea1"
-          rows="3"
           type="time"
           {...register("inputHora", {
             required: "La hora es un dato obligatorio",
