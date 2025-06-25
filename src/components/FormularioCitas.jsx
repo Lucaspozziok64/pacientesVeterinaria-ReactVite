@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import Swal from 'sweetalert2'
 
 const FormularioCitas = ({ agregarCita }) => {
   const {
@@ -6,12 +7,28 @@ const FormularioCitas = ({ agregarCita }) => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
   const cargarCard = (data) => {
-    const  { inputNombre, inputDueño, inputFecha, inputHora, inputSintomas} = data
-    agregarCita(inputNombre, inputDueño, inputHora, inputFecha, inputSintomas)
+    const { inputNombre, inputDueño, inputFecha, inputHora, inputSintomas } =
+      data;
+    agregarCita(inputNombre, inputDueño, inputHora, inputFecha, inputSintomas);
     reset();
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      },
+    });
+    Toast.fire({
+      icon: "success",
+      title: "Cita creada exitosamente",
+    });
   };
 
   return (
@@ -30,25 +47,27 @@ const FormularioCitas = ({ agregarCita }) => {
           id="exampleFormControlInput1"
           placeholder="ej: Budy🐶"
           {...register("inputNombre", {
-              required: "EL nombre es un dato obligatorio",
-              minLength: {
-                value: 3,
-                message: "El nombre debe tener 3 caracteres como minimo",
-              },
-              maxLength: {
-                value: 5,
-                message: "El nombre debe contener como maximo 5 caracteres",
-              },
-              pattern: {
-                value: /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,50}$/,
-                message:
-                  "El nombre debe contener caracteres alfanumericos mayusculas o minusculas",
-              },
+            required: "EL nombre es un dato obligatorio",
+            minLength: {
+              value: 3,
+              message: "El nombre debe tener 3 caracteres como minimo",
+            },
+            maxLength: {
+              value: 5,
+              message: "El nombre debe contener como maximo 5 caracteres",
+            },
+            pattern: {
+              value: /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,50}$/,
+              message:
+                "El nombre debe contener caracteres alfanumericos mayusculas o minusculas",
+            },
           })}
         />
       </div>
       <div>
-        <span className="bg-danger text-white">{errors.inputNombre?.message}</span>
+        <span className="bg-danger text-white">
+          {errors.inputNombre?.message}
+        </span>
       </div>
       <div className="mb-2">
         <label className="form-label">
@@ -60,25 +79,27 @@ const FormularioCitas = ({ agregarCita }) => {
           rows="3"
           placeholder="ej: Juan"
           {...register("inputDueño", {
-              required: "Su nombre es un dato obligatorio",
-              minLength: {
-                value: 4,
-                message: "su nombre debe tener 4 caracteres como minimo",
-              },
-              maxLength: {
-                value: 10,
-                message: "Su nombre debe contener como maximo 10 caracteres",
-              },
-              pattern: {
-                value: /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,50}$/,
-                message:
-                  "Su nombre debe contener caracteres alfanumericos mayusculas o minusculas",
-              },
+            required: "Su nombre es un dato obligatorio",
+            minLength: {
+              value: 4,
+              message: "su nombre debe tener 4 caracteres como minimo",
+            },
+            maxLength: {
+              value: 10,
+              message: "Su nombre debe contener como maximo 10 caracteres",
+            },
+            pattern: {
+              value: /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,50}$/,
+              message:
+                "Su nombre debe contener caracteres alfanumericos mayusculas o minusculas",
+            },
           })}
         ></input>
       </div>
       <div>
-        <span className="bg-danger text-white">{errors.inputDueño?.message}</span>
+        <span className="bg-danger text-white">
+          {errors.inputDueño?.message}
+        </span>
       </div>
       <div className="mb-0 d-flex justify-content-center align-items-center">
         <label className="form-label">
@@ -90,7 +111,7 @@ const FormularioCitas = ({ agregarCita }) => {
           rows="3"
           type="date"
           {...register("inputFecha", {
-              required: "La fecha es un dato obligatorio",
+            required: "La fecha es un dato obligatorio",
           })}
         ></input>
         <label className="form-label mx-1">
@@ -102,13 +123,17 @@ const FormularioCitas = ({ agregarCita }) => {
           rows="3"
           type="time"
           {...register("inputHora", {
-              required: "La hora es un dato obligatorio",
+            required: "La hora es un dato obligatorio",
           })}
         ></input>
       </div>
       <div>
-        <span className="bg-danger text-white">{errors.inputFecha?.message}</span>
-        <span className="bg-danger text-white m-1">{errors.inputHora?.message}</span>
+        <span className="bg-danger text-white">
+          {errors.inputFecha?.message}
+        </span>
+        <span className="bg-danger text-white m-1">
+          {errors.inputHora?.message}
+        </span>
       </div>
       <div className="mb-2">
         <label className="form-label">
@@ -121,20 +146,22 @@ const FormularioCitas = ({ agregarCita }) => {
           type="text"
           placeholder="Describir sintomas"
           {...register("inputSintomas", {
-              required: "El sintoma es un dato obligatorio",
-              minLength: {
-                value: 4,
-                message: "El sintoma debe tener 10 caracteres como minimo",
-              },
-              maxLength: {
-                value: 120,
-                message: "El sintoma debe contener como maximo 100 caracteres",
-              },
+            required: "El sintoma es un dato obligatorio",
+            minLength: {
+              value: 4,
+              message: "El sintoma debe tener 10 caracteres como minimo",
+            },
+            maxLength: {
+              value: 120,
+              message: "El sintoma debe contener como maximo 100 caracteres",
+            },
           })}
         ></input>
       </div>
       <div>
-        <span className="bg-danger text-white">{errors.inputSintomas?.message}</span>
+        <span className="bg-danger text-white">
+          {errors.inputSintomas?.message}
+        </span>
       </div>
       <div className="d-flex justify-content-end">
         <button type="submit" className="bg-success rounded-2 text-white">
